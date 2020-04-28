@@ -5,6 +5,15 @@
 
 	<select id="selects" resultType="Article">
 		select * from cms_article
+		
+		<where>
+		  <!-- 根据文章作者查询 -->
+		  <if test="userId!=null">
+		   user_id  =#{userId}
+		  </if>
+		
+		
+		</where>
 
 	</select>
 </mapper>

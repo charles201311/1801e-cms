@@ -1,7 +1,5 @@
 package com.bw.cms.service.impl;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -11,7 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bw.cms.domain.Article;
 import com.bw.cms.service.ArticleService;
-
+import com.github.pagehelper.PageInfo;
+//
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-beans.xml")
 public class ArticleServiceImplTest {
@@ -20,8 +19,8 @@ public class ArticleServiceImplTest {
 
 	@Test
 	public void testSelects() {
-		List<Article> list = articleService.selects();
-		System.out.println(list);
+		 PageInfo<Article> info = articleService.selects(new Article(),1,10);
+		System.out.println(info.getList());
 		
 	}
 
