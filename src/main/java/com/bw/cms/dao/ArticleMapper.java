@@ -12,6 +12,15 @@ import com.bw.cms.domain.Article;
  * @date: 2020年4月27日 下午4:52:39
  */
 public interface ArticleMapper { 
+	/**
+	 * 
+	 * @Title: insert 
+	 * @Description: 增加文章
+	 * @param article
+	 * @return
+	 * @return: int
+	 */
+	int insert(Article article);
 	
 	/**
 	 * 

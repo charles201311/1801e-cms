@@ -33,5 +33,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.select(id);
 	}
 
+	@Override
+	public int insert(Article article) {
+		// TODO Auto-generated method stub
+		return articleMapper.insert(article);
+	}
+
 
 }

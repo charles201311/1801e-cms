@@ -9,9 +9,6 @@
 <!-- 视窗 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
-<link href="/resource/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -27,8 +24,7 @@
 					<h5 class="mt-0">${article.title }</h5>
 					<p><fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 					<div class="float-right">
-						<button type="button" class="btn btn-link" data-toggle="modal"
-						
+						<button type="button" class="btn btn-link " data-toggle="modal"
 							data-target="#exampleModalLong" onclick="detail(${article.id})">详情</button>
 					</div>
 				</div>
@@ -71,7 +67,7 @@
 //文章详情
 function detail(id){
 	
-	$.get("/article",{id:id},function(article){
+	$.get("/my/article",{id:id},function(article){
 		
 		$("#title").text(article.title);
 		$("#content").html(article.content);
@@ -83,7 +79,7 @@ function detail(id){
 
 //分页 
 function goPage(pageNum){
-	$("#center").load("/articles?pageNum="+pageNum);
+	$("#center").load("/my/articles?pageNum="+pageNum);
 	
 }
 </script>

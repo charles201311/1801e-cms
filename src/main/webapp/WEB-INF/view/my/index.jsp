@@ -28,9 +28,9 @@
 		<div class="row mt-1">
 			<div class="col-md-2 bg-light" style="height: 550px">
 
-				<div class="list-group">
-					<a href="#" data="/articles" class="list-group-item list-group-item-action active">
-						我的文章 </a> <a href="#" data="/publish" class="list-group-item list-group-item-action">
+				<div class="list-group text-center">
+					<a href="#" data="/my/articles" class="list-group-item list-group-item-action active">
+						我的文章 </a> <a href="#" data="/my/publish" class="list-group-item list-group-item-action">
 						发布文章</a> <a href="#" class="list-group-item list-group-item-action">我的收藏</a>
 					<a href="#" class="list-group-item list-group-item-action">
 						我的评论</a> <a href="#"
@@ -40,7 +40,14 @@
 
 			</div>
 			 <!-- 中间内容区域 -->
-			<div class="col-md-10" id="center"></div>
+			<div class="col-md-10" id="center">
+			 <!-- 提前引入kindeditor -->
+			<div style="display: none">
+			  <jsp:include page="/resource/kindeditor/jsp/demo.jsp"/>
+			</div>
+			
+			
+			</div>
 		</div>
 	</div>
 
@@ -51,15 +58,16 @@
 //文档就绪函数
  $(function(){
 	 //0 默认显示我的文章
-	 $("#center").load("/articles")
+	 $("#center").load("/my/articles")
 	 
 	 
 	//1.为左侧菜单添加点击事件
 	$("a").click(function(){
 		//2/获取A标签的data
 		var url =$(this).attr("data");
+		
 		$("a").removeClass("active");//删除所有样式
-	    $(this).addClass("active");//为当前点击的菜单添加样式
+	    $(this).addClass("active");//为当前点击的菜单增加选中样式
 		//3 在中间区域加载url
 		$("#center").load(url);
 	})

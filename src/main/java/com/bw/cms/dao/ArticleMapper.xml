@@ -55,7 +55,12 @@
 
 	</select>
 
-
+   <!-- 增加文章 -->
+   <insert id="insert">
+   insert into cms_article(title,picture,content,channel_id,category_id,user_id,
+   created,updated,content_type,status,hot,deleted) values(#{title},#{picture},#{content},#{channelId},#{categoryId},#{userId},
+   #{created},#{updated},#{contentType},#{status},#{hot},#{deleted})
+   </insert>
 
 	<select id="selectUserById" resultType="User">
 		select * from cms_user where id =#{id}

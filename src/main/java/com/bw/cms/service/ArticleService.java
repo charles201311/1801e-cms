@@ -14,6 +14,16 @@ public interface ArticleService {
 	
 	/**
 	 * 
+	 * @Title: insert 
+	 * @Description: 增加文章
+	 * @param article
+	 * @return
+	 * @return: int
+	 */
+	int insert(Article article);
+	
+	/**
+	 * 
 	 * @Title: select 
 	 * @Description: 文章详情
 	 * @param id
