@@ -30,7 +30,7 @@
 
 				<div class="list-group">
 					<a href="#" data="/articles" class="list-group-item list-group-item-action active">
-						我的文章 </a> <a href="#" class="list-group-item list-group-item-action">
+						我的文章 </a> <a href="#" data="/publish" class="list-group-item list-group-item-action">
 						发布文章</a> <a href="#" class="list-group-item list-group-item-action">我的收藏</a>
 					<a href="#" class="list-group-item list-group-item-action">
 						我的评论</a> <a href="#"
@@ -50,11 +50,16 @@
 <script type="text/javascript">
 //文档就绪函数
  $(function(){
+	 //0 默认显示我的文章
+	 $("#center").load("/articles")
+	 
+	 
 	//1.为左侧菜单添加点击事件
 	$("a").click(function(){
 		//2/获取A标签的data
 		var url =$(this).attr("data");
-		//alert(url)
+		$("a").removeClass("active");//删除所有样式
+	    $(this).addClass("active");//为当前点击的菜单添加样式
 		//3 在中间区域加载url
 		$("#center").load(url);
 	})

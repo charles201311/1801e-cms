@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bw.cms.domain.Article;
 import com.bw.cms.service.ArticleService;
@@ -53,6 +54,34 @@ public class MyController {
 		model.addAttribute("info", info);
 		return "my/articles";
 	
+	}
+	
+	/**
+	 * 
+	 * @Title: publish 
+	 * @Description: 去发布文章
+	 * @return
+	 * @return: String
+	 */
+	@RequestMapping("publish")
+	public String publish() {
+		
+		return "my/publish";
+		
+	}
+	/**
+	 * 
+	 * @Title: article 
+	 * @Description: 文章详情
+	 * @param id
+	 * @return
+	 * @return: Article
+	 */
+	@ResponseBody
+	@RequestMapping("article")
+	public Article article(Integer id) {
+		return articleService.select(id);
+		
 	}
 	
 

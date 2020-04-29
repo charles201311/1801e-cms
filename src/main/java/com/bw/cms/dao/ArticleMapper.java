@@ -12,6 +12,18 @@ import com.bw.cms.domain.Article;
  * @date: 2020年4月27日 下午4:52:39
  */
 public interface ArticleMapper { 
+	
+	/**
+	 * 
+	 * @Title: select 
+	 * @Description: 文章详情
+	 * @param id
+	 * @return
+	 * @return: Article
+	 */
+	Article select(Integer id);
+	
+	
 	/**
 	 * 
 	 * @Title: selects 

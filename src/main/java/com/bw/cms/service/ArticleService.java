@@ -11,6 +11,16 @@ import com.github.pagehelper.PageInfo;
  * @date: 2020年4月27日 下午4:54:27
  */
 public interface ArticleService {
+	
+	/**
+	 * 
+	 * @Title: select 
+	 * @Description: 文章详情
+	 * @param id
+	 * @return
+	 * @return: Article
+	 */
+	Article select(Integer id);
 	/**
 	 * 
 	 * @Title: selects 
