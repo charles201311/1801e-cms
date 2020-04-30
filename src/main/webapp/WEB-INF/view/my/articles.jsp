@@ -18,8 +18,9 @@
 		<c:forEach items="${info.list}" var="article">
 
 			<div class="media">
-				<img src="/resource/images/1.jpg" class="mr-3 rounded" alt="..."
-					width="50px" height="50px">
+			    <!-- 文章标题图片 -->
+				<img src="/pic/${article.picture }" class="mr-3 rounded" alt="..."
+					width="156px" height="101.8px">
 				<div class="media-body">
 					<h5 class="mt-0">${article.title }</h5>
 					<p><fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
