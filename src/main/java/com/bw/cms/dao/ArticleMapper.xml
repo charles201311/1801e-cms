@@ -35,11 +35,12 @@
 
 	<select id="select" resultMap="articleResultMap">
 
-		select * from cms_article where id =#{id}
+		select * from cms_article where id
+		=#{id}
 
 	</select>
 
-	<select id="selects" resultType="Article">
+	<select id="selects" resultMap="articleResultMap">
 		select * from cms_article
 
 		<where>
@@ -48,6 +49,14 @@
 				user_id =#{userId}
 			</if>
 
+			<!-- 根据文章审核状态查询 -->
+			<if test="status!=null">
+				and status =#{status}
+			</if>
+			<!-- 根据文章标题查询 -->
+			<if test="title!=null and title!=''">
+				and title like "%"#{title}"%"
+			</if>
 		</where>
 
 
@@ -55,23 +64,28 @@
 
 	</select>
 
-   <!-- 增加文章 -->
-   <insert id="insert">
-   insert into cms_article(title,picture,content,channel_id,category_id,user_id,
-   created,updated,content_type,status,hot,deleted) values(#{title},#{picture},#{content},#{channelId},#{categoryId},#{userId},
-   #{created},#{updated},#{contentType},#{status},#{hot},#{deleted})
-   </insert>
+	<!-- 增加文章 -->
+	<insert id="insert">
+		insert into
+		cms_article(title,picture,content,channel_id,category_id,user_id,
+		created,updated,content_type,status,hot,deleted)
+		values(#{title},#{picture},#{content},#{channelId},#{categoryId},#{userId},
+		#{created},#{updated},#{contentType},#{status},#{hot},#{deleted})
+	</insert>
 
 	<select id="selectUserById" resultType="User">
-		select * from cms_user where id =#{id}
+		select * from cms_user
+		where id =#{id}
 
 	</select>
 	<select id="selectChannelById" resultType="Channel">
-		select * from cms_channel where id =#{id}
+		select * from
+		cms_channel where id =#{id}
 
 	</select>
 	<select id="selectCategoryById" resultType="Category">
-		select * from cms_category where id =#{id}
+		select * from
+		cms_category where id =#{id}
 
 	</select>
 </mapper>
