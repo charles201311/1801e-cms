@@ -14,6 +14,15 @@ import com.bw.cms.domain.Article;
 public interface ArticleMapper { 
 	/**
 	 * 
+	 * @Title: update 
+	 * @Description: 更新文章
+	 * @param article
+	 * @return
+	 * @return: int
+	 */
+	int update(Article article);
+	/**
+	 * 
 	 * @Title: insert 
 	 * @Description: 增加文章
 	 * @param article

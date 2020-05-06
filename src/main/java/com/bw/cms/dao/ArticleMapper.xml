@@ -88,4 +88,23 @@
 		cms_category where id =#{id}
 
 	</select>
+
+	<!-- 更新文章 -->
+	<update id="update">
+		update cms_article
+		<trim prefix="set" suffix=" where id =#{id}" suffixOverrides=",">
+			<if test="title!=null and title!=''">
+				title =#{title},
+			</if>
+			<if test="content!=null and content!=''">
+				content =#{content},
+			</if>
+			<if test="hot!=null">
+				hot =#{hot},
+			</if>
+			<if test="status!=null">
+				status =#{status},
+			</if>
+		</trim>
+	</update>
 </mapper>
