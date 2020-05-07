@@ -57,6 +57,18 @@
 			<if test="title!=null and title!=''">
 				and title like "%"#{title}"%"
 			</if>
+			<!-- 按照栏目和分类查询 -->
+				<if test="channelId!=null">
+				and channel_Id =#{channelId}
+			</if>
+			<!-- 按照栏目和分类查询 -->
+				<if test="categoryId!=null">
+				and category_Id =#{categoryId}
+			</if>
+			<!-- 查询热点文章 -->
+				<if test="hot!=null">
+				and hot =#{hot}
+			</if>
 		</where>
 
 
