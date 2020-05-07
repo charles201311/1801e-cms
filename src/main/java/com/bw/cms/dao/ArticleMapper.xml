@@ -69,6 +69,12 @@
 				<if test="hot!=null">
 				and hot =#{hot}
 			</if>
+			
+			<!-- 按照文章发布时间查询 -->
+			<if test="created!=null">
+			  and created >= #{created} and created &lt;= now()
+			</if>
+			
 		</where>
 
 

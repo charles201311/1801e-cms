@@ -21,7 +21,6 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public PageInfo<Article> selects(Article articles, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		
 		List<Article> list = articleMapper.selects(articles);
 		
 		return new PageInfo<Article>(list);
