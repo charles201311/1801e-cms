@@ -9,22 +9,22 @@
 <!-- 视窗 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>今日头条</title>
-<link href="/resource/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+.ex {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+</style>
 <link href="/resource/css/index.css" rel="stylesheet">
+<link href="/resource/css/bootstrap.min.css" rel="stylesheet">
+
 <script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-ul {
-	display: block;
-	list-style-type: disc;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 40px;
-}
-</style>
+
 
 
 </head>
@@ -38,7 +38,10 @@ ul {
 					<font color="white">下载APP</font>
 				</button>
 				<button class="btn btn-link btn-sm">
-					<font color="white">注册头条号</font>
+					<button type="button" class="btn btn-link" data-toggle="modal"
+						data-target="#exampleModal" onclick="reg()">
+						<font color="white">注册头条号</font>
+					</button>
 				</button>
 				<div class="float-right">
 
@@ -115,7 +118,7 @@ ul {
 
 
 					<!-- 热点文章 -->
-					<div>
+					<div class="mt-3">
 						<ul class="list-unstyled">
 							<c:forEach items="${info.list}" var="article">
 								<li class="media"><img src="/pic/${article.picture}"
@@ -189,20 +192,25 @@ ul {
 			<!-- 右侧边栏 -->
 			<div class="col-md-3">
 				<div class="card" style="width: 18rem;">
-					<div class="card-header"><h5>24小时热文</h5>
+					<div class="card-header">
+						<h5>24小时热文</h5>
 					</div>
-						<div class="card-body">
-							<ul class="list-unstyled">
-								<c:forEach items="${hot24Articles.list}" var="hot24Article">
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<c:forEach items="${hot24Articles.list}" var="hot24Article">
 								<li class="media"><img src="/pic/${hot24Article.picture}"
-									class="mr-3" alt="..." style="width: 60px; height: 60px">
+									class="mr-3 rounded" alt="..."
+									style="width: 60px; height: 60px">
 									<div class="media-body">
-										<p>${hot24Article.title }</p>
+										<p class="ex">
+											<a href="/articleDetail?id=${hot24Article.id}"
+												target="_blank">${hot24Article.title }</a>
+										</p>
 									</div></li>
-									<hr>
-									</c:forEach>
-							</ul>
-						</div>
+								<hr>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -210,8 +218,33 @@ ul {
 
 	</div>
 
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">注册</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="passport"></div>
+				
+			</div>
+		</div>
+	</div>
+
 </body>
 <script type="text/javascript">
+//注册 --在modal里显示注册
+function reg(){
+	$("#passport").load("/passport/reg");
+	
+}
+
+
+
 	function goPage(pageNum) {
 		var channelId = '${article.channelId}';//栏目id
 		var categoryId = '${article.categoryId}';//分类id
