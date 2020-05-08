@@ -22,6 +22,7 @@
 <link href="/resource/css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/resource/js/popper.min.js"></script>
 <script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 
 
@@ -40,18 +41,32 @@
 				<button class="btn btn-link btn-sm">
 					<button type="button" class="btn btn-link" data-toggle="modal"
 						data-target="#exampleModal" onclick="reg()">
-						<font color="white">注册头条号</font>
+						<font color="white">注册</font>
 					</button>
+					<!-- 如果用户已经登录则不显示登录按钮 -->
+					<c:if test="${sessionScope.user==null }">
+						<button type="button" class="btn btn-link" data-toggle="modal"
+							data-target="#exampleModal" onclick="login()">
+							<font color="white">登录</font>
+						</button>
+					</c:if>
 				</button>
-				<div class="float-right">
+				<!-- 如果用户登录显示登录信息 -->
+				<c:if test="${sessionScope.user!=null }">
+					<div class="float-right">
+						<div class="btn-group dropleft">
+							<button type="button" class="btn btn-dark dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">${sessionScope.user.username }</button>
+							<div class="dropdown-menu">
 
-					<button class="btn btn-link btn-sm">
-						<font color="white">侵权投诉</font>
-					</button>
-					<button class="btn btn-link btn-sm">
-						<font color="white">头条产品</font>
-					</button>
-				</div>
+								<a class="dropdown-item" href="/my">个人中心</a> <a
+									class="dropdown-item" href="">头条产品</a>
+							</div>
+						</div>
+
+					</div>
+				</c:if>
 			</div>
 
 		</div>
@@ -223,27 +238,34 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">注册</h5>
+					<h5 class="modal-title" id="exampleModalLabel">
+						<span id="title"></span>
+					</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body" id="passport"></div>
-				
+
 			</div>
 		</div>
 	</div>
 
 </body>
 <script type="text/javascript">
-//注册 --在modal里显示注册
-function reg(){
-	$("#passport").load("/passport/reg");
-	
-}
+	//注册 --在modal里显示注册
+	function reg() {
+		$("#title").text("注册");
+		$("#passport").load("/passport/reg");
 
+	}
+	//登录
+	function login() {
+		$("#title").text("登录");
+		$("#passport").load("/passport/login");
 
+	}
 
 	function goPage(pageNum) {
 		var channelId = '${article.channelId}';//栏目id

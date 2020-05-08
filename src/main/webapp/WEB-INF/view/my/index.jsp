@@ -20,8 +20,9 @@
 		<div class="row">
 			<div class="col-md-12"
 				style="background-color: #563D7C; height: 50px">
+				<a href="/">
 				<img alt="" src="/resource/images/logo-my.png" width="50px"
-					height="50px"> <font color="white">个人中心</font>
+					height="50px"></a> <font color="white">个人中心</font>
 			</div>
 
 		</div>

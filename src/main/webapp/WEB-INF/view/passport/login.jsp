@@ -18,9 +18,8 @@
 </head>
 <body>
 	<div class="container">
-		<span id="msg" class="bg-danger"></span>
-		<form id="reg">
-
+<span id="msg" class="bg-danger"></span>
+		<form id="login">
 			<div class="form-group">
 				<label for="username">用户名</label> <input id="username"
 					class="form-control" type="text" name="username">
@@ -29,76 +28,52 @@
 				<label for="password">密码</label> <input class="form-control"
 					type="text" name="password" id="password">
 			</div>
-			<div class="form-group">
-				<label for="repassword">确认密码</label> <input class="form-control"
-					type="text" name="repassword" id="repassword">
-			</div>
 
-			<div class="form-inline">
-				<div class="form-group  form-check">
-					<input type="radio" name="gender" class="form-check-input" id="man"
-						value="1" checked="checked"> <label
-						class="form-check-label" for="man"> 男</label>
-				</div>
-				<div class="form-group  form-check">
-					<input type="radio" name="gender" class="form-check-input"
-						id="women" value="0"> <label class="form-check-label"
-						for="women"> 女</label>
-
-				</div>
-			</div>
 			<div class="form-group">
-				<button class="btn btn-info" type="submit">注册</button>
+				<button class="btn btn-info" type="submit" >登录</button>
 				<button class="btn btn-warning" type="reset">重置</button>
+
 			</div>
+
 		</form>
+
+
+
 	</div>
+
+
 
 
 </body>
 <script type="text/javascript">
  //表单校验
 $(function(){
-	$("#reg").validate({
+	$("#login").validate({
 	 //1.表单校验规则	
 	 rules:{
 		 username:{
 			 required:true,//用户名不能为空
-			 rangelength:[5,10],//用户名的长度在5-10之间
 		 },
 		 password:{
 			 required:true,//密码不能为空
-			 rangelength:[6,10],//密码的长度在6-10之间
-		 },
-		 repassword:{
-			 equalTo:"#password",//确认密码和第一次输入的密码一致
-		 },
+		 }
 		 
 	 },
 	 //2不满足规则进行消息提示
 	 messages:{
 		 username:{
 			 required:"用户名不能为空",
-			 rangelength:"用户名的长度必须在5-10之间",
 		 },
 		 password:{
 			 required:"密码不能为空",
-			 rangelength:"密码的长度在6-10之间",
-		 },
-		 repassword:{
-			 equalTo:"两次密码输入不一致",
 		 }
 	 },
 	 submitHandler:function(){
-		 $.post("/passport/reg",$("#reg").serialize(),function(result){
+		 $.post("/passport/login",$("#login").serialize(),function(result){
 			 if(result.code==200){
-				 //注册成功，跳转到登录页面
-				 //1.改变modal标题
-				 $("#title").text(result.msg);
-				 //2.跳转到登录面
-				$("#passport").load("/passport/login") ;
+				location.href="/"; 
 			 }else{
-				 $("#msg").text(result.msg);
+				 $("#msg").text(result.msg)
 			 }
 		 })
 		 

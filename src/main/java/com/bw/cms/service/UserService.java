@@ -4,6 +4,25 @@ import com.bw.cms.domain.User;
 import com.github.pagehelper.PageInfo;
 
 public interface UserService {
+	
+	/**
+	 * 
+	 * @Title: selectByName 
+	 * @Description: 根据用户名称查询用户
+	 * @param username
+	 * @return
+	 * @return: User
+	 */
+	User selectByName(String username);
+	/**
+	 * 
+	 * @Title: insert 
+	 * @Description: 注册
+	 * @param user
+	 * @return
+	 * @return: int
+	 */
+	int insert(User user);
 
 	/**
 	 * 
@@ -23,4 +42,13 @@ public interface UserService {
 	 * @return: void
 	 */
 	int update(User user);
+	/**
+	 * 
+	 * @Title: login 
+	 * @Description: TODO
+	 * @param user
+	 * @return
+	 * @return: User
+	 */
+	User  login(User user);
 }

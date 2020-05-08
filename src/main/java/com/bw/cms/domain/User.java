@@ -34,6 +34,7 @@ public class User implements Serializable {
 	private Integer id;
 	private String username;
 	private String password;
+	private String repassword;//确认密码。冗余属性
 	private String nickname;//昵称
 	private Date birthday;
 	private Integer gender;//性别 0:女 1：男
@@ -54,6 +55,13 @@ public class User implements Serializable {
 	}
 	public String getPassword() {
 		return password;
+	}
+	
+	public String getRepassword() {
+		return repassword;
+	}
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
 	}
 	public void setPassword(String password) {
 		this.password = password;

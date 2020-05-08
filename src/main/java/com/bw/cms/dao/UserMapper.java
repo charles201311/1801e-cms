@@ -5,6 +5,28 @@ import java.util.List;
 import com.bw.cms.domain.User;
 
 public interface UserMapper {
+	/**
+	 * 
+	 * @Title: selectByName 
+	 * @Description: 根据用户名称查询用户
+	 * @param username
+	 * @return
+	 * @return: User
+	 */
+	User selectByName(String username);
+	
+	
+	/**
+	 * 
+	 * @Title: insert 
+	 * @Description: 注册
+	 * @param user
+	 * @return
+	 * @return: int
+	 */
+	int insert(User user);
+	
+	
 
 	/**
 	 * 
