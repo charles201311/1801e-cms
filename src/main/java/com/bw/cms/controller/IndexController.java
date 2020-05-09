@@ -47,7 +47,7 @@ public class IndexController {
 	public String index(Model model,Article article,@RequestParam(defaultValue = "1")Integer pageNum,@RequestParam(defaultValue = "5")Integer pageSize) {
 		
 		model.addAttribute("article", article);//封装查询条件
-		
+		article.setStatus(1);//只显示审核过的文章
 		//1.查询所有的栏目
 		List<Channel> channels = channelService.selects();
 		model.addAttribute("channels", channels);
@@ -72,6 +72,7 @@ public class IndexController {
 		
 		//5 右侧边栏显示24小内容的热点文章
 		 Article article2 = new Article();
+		 article2.setStatus(1);//只显示审核过的文章
 		 article2.setHot(1);//热点文章
 		 article2.setCreated(DateUtil.SubDate(new Date(), 24));//把当前系统时间减去24 个小时
 		 

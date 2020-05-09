@@ -11,6 +11,7 @@
 <title>管理员中心</title>
 <link href="/resource/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/resource/js/popper.min.js"></script>
 <script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -19,9 +20,27 @@
 
 		<div class="row bg-dark">
 			<div class="col-md-12" style="height: 50px">
-				<img alt="" src="/resource/images/logo-admin.jpg"
-					class="rounded-circle">
+				<a href="/"><img alt="" src="/resource/images/logo-admin.jpg"
+					class="rounded-circle"></a>
 					<font color="white">管理员中心</font>
+					<!-- 如果用户登录显示登录信息 -->
+				<c:if test="${sessionScope.user!=null }">
+					<div class="float-right">
+						<div class="btn-group dropleft">
+							<button type="button" class="btn btn-dark dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">${sessionScope.user.username }</button>
+							<div class="dropdown-menu">
+
+								<a class="dropdown-item" href="/">首页</a> <a
+									class="dropdown-item" href="#">头条产品</a>
+									<a
+									class="dropdown-item" href="/passport/logout">注销</a>
+							</div>
+						</div>
+
+					</div>
+				</c:if>
 			</div>
 
 		</div>

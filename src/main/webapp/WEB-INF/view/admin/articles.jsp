@@ -9,9 +9,6 @@
 <!-- 视窗 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
-<link href="/resource/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container-fluid">

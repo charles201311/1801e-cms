@@ -27,11 +27,11 @@
 			</div>
 			<div class="form-group">
 				<label for="password">密码</label> <input class="form-control"
-					type="text" name="password" id="password">
+					type="password" name="password" id="password">
 			</div>
 			<div class="form-group">
 				<label for="repassword">确认密码</label> <input class="form-control"
-					type="text" name="repassword" id="repassword">
+					type="password" name="repassword" id="repassword">
 			</div>
 
 			<div class="form-inline">

@@ -41,6 +41,7 @@ public class User implements Serializable {
 	private Integer locked;//0:正常 1：禁用
 	private Date created;//创建时间
 	private Date updated;//修改时间
+	private Integer role;//角色。 1：管理员  0：普通用户
 	public Integer getId() {
 		return id;
 	}
@@ -57,6 +58,12 @@ public class User implements Serializable {
 		return password;
 	}
 	
+	public Integer getRole() {
+		return role;
+	}
+	public void setRole(Integer role) {
+		this.role = role;
+	}
 	public String getRepassword() {
 		return repassword;
 	}

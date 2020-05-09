@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bw.cms.domain.Article;
 import com.bw.cms.domain.Category;
 import com.bw.cms.domain.Channel;
+import com.bw.cms.domain.User;
 import com.bw.cms.service.ArticleService;
 import com.bw.cms.service.ChannelService;
 import com.github.pagehelper.PageInfo;
@@ -64,9 +66,12 @@ public class MyController {
 	 * @return: String
 	 */
 	@RequestMapping("articles")
-	public String articles(Model model, Article article, @RequestParam(defaultValue = "1") Integer pageNum,
+	public String articles(Model model,HttpSession session, Article article, @RequestParam(defaultValue = "1") Integer pageNum,
 			@RequestParam(defaultValue = "6") Integer pageSize) {
-
+       //从session获取当前登录的人信息
+		User user = (User) session.getAttribute("user");
+		article.setUserId(user.getId());//只显示登录人的文章
+		
 		PageInfo<Article> info = articleService.selects(article, pageNum, pageSize);
 		model.addAttribute("info", info);
 		return "my/articles";
@@ -96,7 +101,7 @@ public class MyController {
 	 */
 	@ResponseBody
 	@PostMapping("publish")
-	public boolean publish(MultipartFile file, Article article) {
+	public boolean publish(MultipartFile file, Article article,HttpSession session) {
 		//判断是否选中文件
 		if(null!=file && !file.isEmpty()) {
 		  String  path ="d:/pic/";//文件上传地址
@@ -114,8 +119,11 @@ public class MyController {
 			}
 			
 		}
+		
 		//初始化发布文件的属性信息
-		article.setUserId(22);//发布人
+		  //从session获取当前登录的人信息
+	    User user = (User) session.getAttribute("user");
+		article.setUserId(user.getId());//发布人
 		article.setStatus(0);//0:待审核
 		article.setCreated(new Date());//发布时间
 		article.setUpdated(new Date());//修改时间

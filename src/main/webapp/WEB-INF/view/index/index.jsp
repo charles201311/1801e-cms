@@ -59,9 +59,14 @@
 								data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false">${sessionScope.user.username }</button>
 							<div class="dropdown-menu">
-
-								<a class="dropdown-item" href="/my">个人中心</a> <a
-									class="dropdown-item" href="">头条产品</a>
+								<c:if test="${sessionScope.user.role==0}">
+									<a class="dropdown-item" href="/my">个人中心</a>
+								</c:if>
+								<c:if test="${sessionScope.user.role==1}">
+									<a class="dropdown-item" href="/admin">管理员中心</a>
+								</c:if>
+								<a class="dropdown-item" href="#">头条产品</a> <a
+									class="dropdown-item" href="/passport/logout">注销</a>
 							</div>
 						</div>
 

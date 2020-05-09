@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="container">
-<span id="msg" class="bg-danger"></span>
+<span id="msg" class="bg-danger" >${msg }</span>
 		<form id="login">
 			<div class="form-group">
 				<label for="username">用户名</label> <input id="username"
@@ -26,7 +26,7 @@
 			</div>
 			<div class="form-group">
 				<label for="password">密码</label> <input class="form-control"
-					type="text" name="password" id="password">
+					type="password" name="password" id="password">
 			</div>
 
 			<div class="form-group">

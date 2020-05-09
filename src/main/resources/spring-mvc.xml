@@ -27,5 +27,27 @@
 	<!-- 文件上传的处理类 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	<!-- 配置自定义拦截器 -->
+	<mvc:interceptors>
+	  <!-- 配置个人中心拦截器 -->
+	     <mvc:interceptor>
+	        <!-- 拦截规则 -->
+	         <mvc:mapping path="/my/**"/>
+	         <!-- 不拦截规则 -->
+	         <mvc:exclude-mapping path="/resource/**"/>
+	         <!--拦截后交给哪个类去处理  -->
+	         <bean class="com.bw.cms.util.MyInterceptor"></bean>
+	     </mvc:interceptor>
+	     
+	     <!-- 管理员中心拦截器 -->
+	     <mvc:interceptor>
+	        <!-- 拦截规则 -->
+	         <mvc:mapping path="/admin/**"/>
+	         <!-- 不拦截规则 -->
+	         <mvc:exclude-mapping path="/resource/**"/>
+	         <!--拦截后交给哪个类去处理  -->
+	         <bean class="com.bw.cms.util.AdminInterceptor"></bean>
+	     </mvc:interceptor>
+	</mvc:interceptors>
 	
 </beans>

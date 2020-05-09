@@ -11,6 +11,7 @@ import com.bw.cms.dao.UserMapper;
 import com.bw.cms.domain.User;
 import com.bw.cms.service.UserService;
 import com.bw.cms.util.CMSException;
+import com.bw.cms.util.Md5Util;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -53,6 +54,9 @@ public class UserServiceImpl implements UserService {
 		// 5.两次密码输入是否一致
 		if (!user.getPassword().equals(user.getRepassword()))
 			throw new CMSException("两次密码输入不一致");
+		
+		//6.对密码进行加密
+		user.setPassword(Md5Util.endcode(user.getPassword()));
 
 		return userMapper.insert(user);
 	}
@@ -76,9 +80,12 @@ public class UserServiceImpl implements UserService {
 		   //3.1
 		if (!StringUtil.hasText(user.getPassword()))
 			throw new CMSException("密码不能为空");
-		  //3.2
-		if(!user.getPassword().equals(u.getPassword()))
+		  //3.2 对登录的密码再进行加密和数据库的进行比较
+		if(!Md5Util.endcode(user.getPassword()).equals(u.getPassword()))
 			throw new CMSException("密码不正确");
+			//4.如果用户状态没禁用，则不能登录
+		if(u.getLocked()==1)
+			throw new CMSException("该账户被禁用，如有疑问请联系管理员");
 		return u;
 	}
 
