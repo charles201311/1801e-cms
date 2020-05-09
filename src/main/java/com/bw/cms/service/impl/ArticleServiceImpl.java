@@ -44,5 +44,13 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.update(article);
 	}
 
+	@Override
+	public PageInfo<Article> selectsOrderComments(Article articles,Integer pageNum,Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Article> list = articleMapper.selectsOrderComments(articles);
+		
+		return new PageInfo<Article>(list);
+	}
+
 
 }

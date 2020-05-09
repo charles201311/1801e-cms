@@ -38,7 +38,17 @@ public class Article  implements Serializable{
 	private Channel channel;//封装对象
 	private Category category;//封装对象
 	
+	private Integer comments;//评论数量
 	
+	
+	
+	
+	public Integer getComments() {
+		return comments;
+	}
+	public void setComments(Integer comments) {
+		this.comments = comments;
+	}
 	public User getUser() {
 		return user;
 	}

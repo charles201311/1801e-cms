@@ -1,5 +1,7 @@
 package com.bw.cms.service;
 
+import java.util.List;
+
 import com.bw.cms.domain.Article;
 import com.github.pagehelper.PageInfo;
 
@@ -11,6 +13,17 @@ import com.github.pagehelper.PageInfo;
  * @date: 2020年4月27日 下午4:54:27
  */
 public interface ArticleService {
+	
+
+	/**
+	 * 
+	 * @Title: selects 
+	 * @Description: 按照评论数量显示文章
+	 * @param articles
+	 * @return
+	 * @return: List<Article>
+	 */
+	PageInfo<Article> selectsOrderComments(Article articles,Integer pageNum,Integer pageSize);
 	/*
 	 * 
 	 * @Title: update 

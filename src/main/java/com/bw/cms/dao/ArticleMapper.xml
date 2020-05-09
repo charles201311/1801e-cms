@@ -32,6 +32,12 @@
 		</association>
 
 	</resultMap>
+	
+	
+	<select id="selectsOrderComments" resultMap="articleResultMap">
+	 select * from cms_article order by comments desc
+	
+	</select>
 
 	<select id="select" resultMap="articleResultMap">
 

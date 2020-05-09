@@ -28,8 +28,9 @@
 			<!-- 如果用户登录显示登录信息 -->
 				<c:if test="${sessionScope.user!=null }">
 					<div class="float-right">
+				
 						<div class="btn-group dropleft">
-							<button type="button" class="btn btn-secondary dropdown-toggle"
+							<button type="button" class="btn btn-purple text-white dropdown-toggle"
 								data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false">${sessionScope.user.username }</button>
 							<div class="dropdown-menu">

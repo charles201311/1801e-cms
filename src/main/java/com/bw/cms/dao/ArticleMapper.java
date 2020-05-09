@@ -51,4 +51,14 @@ public interface ArticleMapper {
 	 * @return: List<Article>
 	 */
 	List<Article> selects(Article articles);
+	
+	/**
+	 * 
+	 * @Title: selects 
+	 * @Description: 按照评论数量显示文章
+	 * @param articles
+	 * @return
+	 * @return: List<Article>
+	 */
+	List<Article> selectsOrderComments(Article articles);
 }

@@ -4,20 +4,25 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bobo.common.utils.DateUtil;
 import com.bw.cms.domain.Article;
 import com.bw.cms.domain.Category;
 import com.bw.cms.domain.Channel;
+import com.bw.cms.domain.Comments;
 import com.bw.cms.domain.Slide;
+import com.bw.cms.domain.User;
 import com.bw.cms.service.ArticleService;
 import com.bw.cms.service.ChannelService;
+import com.bw.cms.service.CommentsService;
 import com.bw.cms.service.SlideService;
 import com.github.pagehelper.PageInfo;
 
@@ -36,6 +41,8 @@ public class IndexController {
 	private ArticleService articleService;
 	@Resource
 	private SlideService slideService;
+	@Resource
+	private CommentsService commentsService;
 	/**
 	 * 
 	 * @Title: index 
@@ -83,6 +90,8 @@ public class IndexController {
 		
 	}
 
+	
+
 	/**
 	 * 
 	 * @Title: articleDetail 
@@ -92,9 +101,36 @@ public class IndexController {
 	 * @return: String
 	 */
 	@GetMapping("articleDetail")
-	public String articleDetail(Integer id,Model model) {
+	public String articleDetail(Integer id,Model model,@RequestParam(defaultValue = "1")Integer pageNum,@RequestParam(defaultValue = "5")Integer pageSize) {
 		Article article = articleService.select(id);
 		model.addAttribute("article",article);
+		//查询出当前文章的所有评论
+		PageInfo<Comments> info = commentsService.selects(id, pageNum, pageSize);
+		model.addAttribute("info",info);
+		//查询评论数量较高的5篇文章
+		PageInfo<Article> info2 = articleService.selectsOrderComments(null, 1, 5);
+		model.addAttribute("info2",info2);
+		
+		
 		return "index/articleDetail";
+	}
+	/**
+	 * 
+	 * @Title: addComments 
+	 * @Description: 增加评论
+	 * @param comments
+	 * @return
+	 * @return: boolean
+	 */
+	@ResponseBody
+	@RequestMapping("addComments")
+	public boolean addComments(Comments comments,HttpSession session) {
+	
+		//封装评论人
+		User user = (User) session.getAttribute("user");
+		comments.setUserId(user.getId());
+		//封装评时间
+		comments.setCreated(new Date());
+		return commentsService.insert(comments);
 	}
 }
