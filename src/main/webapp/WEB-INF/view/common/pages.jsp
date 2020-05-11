@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
 	<nav aria-label="Page navigation example">
-		<ul class="pagination">
+		<ul class="pagination" >
 			<c:if test="${info.total==0}">
 				<i>暂无数据</i>
 			</c:if>
@@ -21,8 +21,12 @@
 				<li class="page-item"><a class="page-link"
 					href="javascript:goPage(${info.nextPage ==0?info.pages:info.nextPage})"
 					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
+				</a>	</li>
+				
+				<li class="page-item text-primary">共${info.pages }页 ，转<input id="page" class="col-2"  type="text" onchange="goPage($(this).val())">页</li>
+			
 			</c:if>
+			
 		</ul>
 	</nav>
 

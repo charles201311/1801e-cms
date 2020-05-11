@@ -40,9 +40,34 @@ public class Article  implements Serializable{
 	
 	private Integer comments;//评论数量
 	
+	private String formateDate;//人性化时间  刚刚  1分钟前 1小时前 4个月前  2年前
+	
+	private String keywords;
+	private String original;
 	
 	
 	
+	
+	
+	
+	public String getFormateDate() {
+		return formateDate;
+	}
+	public void setFormateDate(String formateDate) {
+		this.formateDate = formateDate;
+	}
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+	public String getOriginal() {
+		return original;
+	}
+	public void setOriginal(String original) {
+		this.original = original;
+	}
 	public Integer getComments() {
 		return comments;
 	}

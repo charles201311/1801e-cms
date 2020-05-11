@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.bobo.common.utils.DateUtil;
 import com.bw.cms.dao.ArticleMapper;
 import com.bw.cms.domain.Article;
 import com.bw.cms.service.ArticleService;
@@ -22,6 +23,10 @@ public class ArticleServiceImpl implements ArticleService {
 	public PageInfo<Article> selects(Article articles, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Article> list = articleMapper.selects(articles);
+		//处理文章发布时间的格式改为 人性化时间  刚刚  1分钟前 1小时前 4个月前  2年前
+		 for (Article article : list) {
+			 article.setFormateDate(DateUtil.getDisplayTime(article.getCreated()));
+		}
 		
 		return new PageInfo<Article>(list);
 	}

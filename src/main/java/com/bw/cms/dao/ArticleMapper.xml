@@ -17,6 +17,8 @@
 		<result column="deleted" property="deleted" />
 		<result column="created" property="created" />
 		<result column="updated" property="updated" />
+		<result column="keywords" property="keywords" />
+		<result column="original" property="original" />
 		<result column="content_type" property="contentType" />
 		<!--作者 -->
 		<association property="user" javaType="User"

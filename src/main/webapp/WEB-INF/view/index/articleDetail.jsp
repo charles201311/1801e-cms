@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <!-- 视窗 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="${article.keywords }">
 <title>${article.title }</title>
 <link href="/resource/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="/resource/js/jquery-3.2.1.js"></script>
@@ -98,7 +99,7 @@
 
 
 	</div>
-
+文章来源：${article.original }
 </body>
 <script type="text/javascript">
 	function add(articleId) {
